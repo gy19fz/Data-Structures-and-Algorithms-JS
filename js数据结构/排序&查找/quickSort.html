@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>归并排序</title>
+<body>
+<script>
+	
+function quickSort(array) {
+  if(!Array.isArray(array) || array.length <= 1){return array}
+  const {length} = array
+  const pivot = array[length - 1];
+  const leftArr = [];
+  const rightArr = [];
+  let i = 0;
+  while(i < length - 1){
+    if(array[i] < pivot){
+      leftArr.push(array[i++])
+    }else{
+      rightArr.push(array[i++])
+    }
+  }
+  return [...quickSort(leftArr), pivot, ...quickSort(rightArr)]
+}
+
+console.log(quickSort([6, 1, 5, 4, 2, 3, 9, 8, 7])) // [1, 2, 3, 4, 5, 6]
+
+</script>
+</body>
+</head>
+</html>

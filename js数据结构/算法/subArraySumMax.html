@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>多数元素</title>
+<body>
+<script>
+	
+  function majorityElement(nums){
+    const countInRange = (nums, num, left, right) => {
+        let count = 0;
+        for(let i = left; i <= right; i++){
+            if(nums[i] === num){count++}
+        }
+        return count
+    }
+
+    const findMaximum = (nums, left, right) => {
+
+        if(left === right){return nums[left]};
+
+        const mid = Math.floor((left + right)/2)
+        const leftMax = findMaximum(nums, left, mid)
+        const rightMax = findMaximum(nums, mid+1, right)
+
+        if(leftMax === rightMax){
+            return leftMax
+        }
+
+        const leftMaxCount = countInRange(nums, leftMax, left, right)
+        const rightMaxCount = countInRange(nums, rightMax, left, right)
+
+        return leftMaxCount > rightMaxCount ? leftMax : rightMax
+    }
+
+    return findMaximum(nums, 0, nums.length - 1)
+  };
+
+// 测试用例
+
+console.log(majorityElement([3,2,3])) // 输出：2
+
+
+
+
+</script>
+</body>
+</head>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>双项链表</title>
+<body>
+<script>
+	class Node{
+		constructor(data){
+			this.prev = null
+			this.data = data;
+			this.next = null
+		}
+	}
+	class LinkedList {
+		constructor(){
+			this.head = null;
+			this.length = null;
+			this.tail = null;
+		}
+		//追加方法
+		append(data){
+			let node = new Node(data);
+			if(this.length === null){
+				this.head = node
+			}else{
+				let currentNode = this.head;
+				while(currentNode.next){
+					currentNode = currentNode.next
+				}
+				currentNode.next = node
+			}
+			this.length += 1
+		}
+		//toString方法
+		toString(){
+			let current = this.head;
+			let str = '';
+			while(current){
+				str += current.data + ' ';
+				current = current.next;
+			}
+			return str
+		}
+		//插入方法
+		insert(data,index){
+			if(index<0 || index > this.length){return}
+			let node = new Node(data);
+			if (index === 0){
+				node.next = this.head;
+				this.head = node
+			}else{
+				let position = 0;
+				let current = this.head;
+				let beforeCurrent = null;
+				while(index != position){
+					beforeCurrent = current;
+					current = current.next;
+					position += 1
+				}
+				beforeCurrent.next = node
+				node.next = current;
+			}
+			this.length += 1
+		}
+		//根据位置获取元素
+		get(index){
+			if(index<0 || index > this.length-1){return}
+			let position = 0;
+			let current = this.head
+			while(position++ != index){
+				current = current.next
+			}
+			return current.data
+		}
+		//获取某个元素的index
+		//indexOf(data){
+		// 	if(!this.length){return}
+		// 	let current = this.head;
+		// 	let position = 0
+		// 	while(data != current.data){
+		// 		current = current.next
+		// 		position += 1
+		// 		if(position === this.length){
+		// 			return false
+		// 		}
+		// 	}
+		// 	return position
+
+		// }
+		indexOf(data){
+			let current = this.head
+			let position = 0
+			while(current){
+				if(current.data === data){
+					return position
+				}else{
+					current = current.next
+					position++
+				}
+			}
+			return false
+		}
+		//删除某个下标位置的元素
+		remove(index){
+			if(index<0 || index > this.length-1){return}
+			let position = 0;
+			let current = this.head;
+			let previous = null;
+			while(index != position){
+				previous = current;
+				current = current.next;
+				position++
+			}
+			if(index === 0 ){
+				this.head = current.next
+			}else{
+				previous.next = current.next
+			}
+			this.length--	
+		}
+		//修改某个位置的元素
+		update(data,index){
+			this.remove(index)
+			this.insert(data,index)
+		}
+
+
+	}
+
+	//测试代码
+	let testLinkedList = new LinkedList()
+	testLinkedList.append('aa')
+	testLinkedList.append('bb')
+	testLinkedList.append('dd')
+	testLinkedList.insert('cc',2)
+	console.log(testLinkedList.toString(),testLinkedList.length)
+	console.log(testLinkedList.get(2))
+	console.log(testLinkedList.indexOf('cc'))
+	testLinkedList.update('aaa',0)
+	console.log(testLinkedList.toString())
+	console.log(testLinkedList)
+
+</script>
+</body>
+</head>
+</html>

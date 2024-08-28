@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>归并排序</title>
+<body>
+<script>
+	
+function mergeSort(array) {
+
+  if(!Array.isArray(array) || array.length <= 1){return array}
+  const {length} = array;
+  let mid = parseInt(length >> 1);
+  let leftArr = array.slice(0, mid);
+  let rightArr = array.slice(mid, length);
+
+  return merge(mergeSort(leftArr), mergeSort(rightArr))
+
+}
+
+function merge(leftArr, rightArr){
+  let result = [];
+  let lengthL = leftArr.length;
+  let lengthR = rightArr.length;
+  let il = 0;
+  let ir = 0;
+
+  while(il < lengthL && ir < lengthR){
+    if(leftArr[il] < rightArr[ir]){
+      result.push(leftArr[il]);
+      il++
+    }else{
+      result.push(rightArr[ir]);
+      ir++
+    }
+  }
+
+  while(il < lengthL){
+    result.push(leftArr[il++])
+  }
+
+  while(ir < lengthR){
+    result.push(rightArr[il++])
+  }
+
+  return result
+}
+
+console.log(mergeSort([6,5,4,3,2,1]))
+
+
+
+
+
+
+
+
+</script>
+</body>
+</head>
+</html>

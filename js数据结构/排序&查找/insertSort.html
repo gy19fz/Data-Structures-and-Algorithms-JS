@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>插入排序</title>
+<body>
+<script>
+	
+	function insertSort(array) {
+    if(!Array.isArray(array) || array.length < 1){return}
+    const {length} = array;
+    for(let i = 1; i < length; i++){
+      let temp = array[i]
+      let j = i
+      while(j-1 >= 0 && array[j-1] > temp){
+        array[j] = array[j-1]
+        j--
+      }
+      array[j] = temp
+    }
+    return array
+  }
+
+console.log(insertSort([5,6,4,3,2,1]))
+// 321 331 231 233 223 123
+	
+</script>
+</body>
+</head>
+</html>

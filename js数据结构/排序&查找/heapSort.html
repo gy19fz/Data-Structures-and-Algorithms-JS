@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>堆排序</title>
+<body>
+<script>
+
+function heapSort(array){
+  if(!Array.isArray(array) || array.length < 1){return array}
+  const {length} = array
+
+  for (let i = Math.floor(length/2 - 1); i >= 0; i--){
+    heapify(array, length, i)
+  }
+
+  for (let i = length - 1; i > 0; i--){
+    ;[array[0],array[i]] = [array[i], array[0]]
+    heapify(array, i, 0)
+  }
+
+  return array
+}
+
+function heapify(array, heapSize, i){
+  let largest = i;
+  let left = 2*i + 1;
+  let right = 2*i + 2;
+
+  if(left < heapSize && array[left] > array[largest]){
+    largest = left
+  }
+  if(right < heapSize && array[right] > array[largest]){
+    largest = right
+  }
+
+  if(i !== largest){
+    ;[array[i], array[largest]] = [array[largest], array[i]]
+    heapify(array, heapSize, largest)
+  }
+}
+
+console.log(heapSort([5,6,4,1,2,3]))
+
+// function heapSort(array) {
+//   // 如果不是数组或者数组长度小于等于 1，直接返回，不需要排序
+//   if (!Array.isArray(array) || array.length <= 1) return array
+
+//   const n = array.length
+
+//   // 构建最大堆
+//   for (let i = Math.floor(n / 2) - 1; i >= 0; i--) {
+//     heapify(array, n, i)
+//   }
+
+//   // 逐一从堆中取出元素，并对剩余元素重新堆化
+//   for (let i = n - 1; i > 0; i--) {
+//     // 将堆顶（最大值）和堆的最后一个元素交换
+//     ;[array[0], array[i]] = [array[i], array[0]]
+
+//     // 对堆的剩余部分重新堆化
+//     heapify(array, i, 0)
+//   }
+
+//   return array
+// }
+
+// // 堆化函数，维护堆的性质
+// function heapify(array, n, i) {
+//   let largest = i // 假设当前节点是最大值
+//   const left = 2 * i + 1 // 左子节点
+//   const right = 2 * i + 2 // 右子节点
+
+//   // 如果左子节点大于当前节点，则更新最大值
+//   if (left < n && array[left] > array[largest]) {
+//     largest = left
+//   }
+
+//   // 如果右子节点大于当前节点，则更新最大值
+//   if (right < n && array[right] > array[largest]) {
+//     largest = right
+//   }
+
+//   // 如果最大值不是当前节点，则交换并继续堆化
+//   if (largest !== i) {
+//     ;[array[i], array[largest]] = [array[largest], array[i]]
+//     heapify(array, n, largest)
+//   }
+// }
+
+// console.log(heatSort([5,6,4,1,2,3]))
+
+</script
+</body>
+</head>
+</html>

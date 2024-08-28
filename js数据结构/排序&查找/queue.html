@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>队列-击鼓传花</title>
+<body>
+<script>
+	class Queue {
+		constructor(){
+			this.items = []
+		}
+		//队列添加元素
+		add(item){
+			this.items.push(item)
+		}
+		//队列删除元素
+		delete(){
+			return this.items.shift()
+		}
+		//查看队列长度
+		len(){
+			return this.items.length
+		}
+		//查看队列内容
+		check(){
+			return this.items.toString()
+		}
+	}
+	function passGame(arr,num){
+		let queue1 = new Queue();
+		arr.forEach((item)=>{
+			queue1.add(item)
+		})
+		console.log(queue1.len())
+		while(queue1.len() > 1){
+			for(let i = 0; i < num-1; i++){
+				queue1.add(queue1.delete())
+			}
+			queue1.delete()
+		}
+		alert(queue1.check())
+	}
+	passGame(['a','b','c','d','e','f'],4)
+</script>
+</body>
+</head>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>希尔排序</title>
+<body>
+<script>
+	
+function hillSort(array) {
+  if(!Array.isArray(array) && array.length < 1){return}
+  const {length} = array
+
+  for(let gap = parseInt(length >> 1); gap >= 1; gap = parseInt(gap >> 1)){
+
+    for(let i = gap; i < length; i++){
+      const temp = array[i];
+      let j = i;
+
+      while( j - gap >= 0 && array[j-gap] > temp){
+
+        array[j] = array[j-gap];
+        j -= gap;
+
+      }
+      array[j] = temp;
+    }
+
+  }
+
+  return array
+}
+
+console.log( hillSort([6,5,4,3,2,1]) )
+
+</script>
+</body>
+</head>
+</html>

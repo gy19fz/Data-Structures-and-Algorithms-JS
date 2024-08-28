@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>基数排序</title>
+<body>
+<script>
+
+  function getDigit(num, i){
+    return Math.floor(Math.abs(num)/10 ** i) % 10
+  }
+
+  function digitCount(num){
+    if(num === 0){return 1}
+    return Math.floor(Math.log10(Math.abs(num))) + 1
+  }
+
+  function radixSort(array){
+
+    if(!Array.isArray(array) || array.length < 1){return}
+    const {length} = array
+
+    let maxDigit = 0
+    for(let i = 0; i < length; i++){
+      maxDigit = Math.max(maxDigit, digitCount(array[i]))
+    }
+    
+    for(let k=0; k < maxDigit; k++){
+      const digitBuckets = Array.from({length:10}, ()=>[])
+      for(let i = 0; i < length; i++){
+        const digit = getDigit(array[i],k);
+        digitBuckets[digit].push(array[i])
+      }
+      array = [].concat(...digitBuckets)
+    }
+
+    return array
+  }
+
+
+
+console.log(radixSort([1112,4,5,3,2,22,154,88]))
+
+</script>
+</body>
+</head>
+</html>
