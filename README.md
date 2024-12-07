@@ -1,2 +1,4 @@
-# Data-Structures-and-Algorithms-JS
-数据结构与算法基于JS（es6）
+# 数据结构与算法基于JS（es6）
+### 大O表示法：
+粗略的度量算法的速度随着数据量的变化的方法。
+
